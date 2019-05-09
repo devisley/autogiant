@@ -1,68 +1,15 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Пояснения:
+0) Приложение создано при помощи npx create react app (обратите внимание нужен Node >= 8.10 и npm 5.2+ and higher)
 
-## Available Scripts
+1) Структура каталогов взята по большей части из статьи https://medium.com/@Charles_Stover/optimal-file-structure-for-react-applications-f3e35ad0a145
 
-In the project directory, you can run:
+2) В папке components каждому компоненту будет соответствовать своя папка (как и описано в статье), в которой размещаем его стили, его тесты, его подкомпоненты, если таковые будут - для примера см. garage.
 
-### `npm start`
+3) в папке routes струтура каталогов соответствует навигации по страницам. В файликах index.js собираем по кирпичикам нашу страницу из компонентов, которые будем брать из components, и из видов, которые будем брать из components/layouts.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Есть одна проблемка, заключается в том, что при большой вложенности каталога в папке routes чтобы вытащить компонент из src/components придется делать вещи вроде 
+import GarageContainer  from '../../../../components/garage'
+Нужно решить что с этим делать. Один из вариантов - использовать файлик .env в корне приложения (https://medium.com/@ktruong008/absolute-imports-with-create-react-app-4338fbca7e3d), но при таком варианте PHPStorm подчеркивает каталог как несуществующий, что не очень удобно.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+4) Реализовал немножко функционала для гаража личного кабинета пользователя (для примера). Можно посмотреть по адресу http://localhost:3000/client/cabinet/garage.
+Чтобы выводился список машин - нужно установить (если еше не установлен) и поднять json-server на 3004 порту (json-server --watch db.json --port 3004).
